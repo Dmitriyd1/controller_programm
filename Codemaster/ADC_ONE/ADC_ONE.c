@@ -58,20 +58,7 @@ void adc_off()
 //включение УАРТ
 void USART1_Init(unsigned char spcon) {
 
- /* unsigned char tmp;
 
-  tmp = WSR;                 //store WSR
-  WSR = (tmp & 0x80) | 0xF;  //swap to HWindow15
-  INT_MASK1 |= TI_RI_MASK;   //allow transmit interrupt
-  WSR = (tmp & 0x80);        //swap to HWindow0
-  __NOP();
-  __NOP();
-  SP_CON0 = spcon;           //Clear SP_CON
-  BAUD_RATE0 = BAUD_LO_VAL;  //write Baud rate value
-  BAUD_RATE0 = BAUD_HI_VAL;
-  __NOP();
-  __NOP();
-  WSR = tmp;         */        //Restore HWindow
   unsigned char reg;
   WSR=15;
   reg=IOC1;
@@ -203,8 +190,7 @@ __EI();
                         }  //while clon!=0
                 __NOP ();
                 __NOP ();
-                //SP_CON0=0x8;
-                //printf("%u %Xh @Xh\n",i,mas[k],ADC_TRSCHAN&0x3FFF);
+
                 k=0 ;
                 i++;
                 adc_convertion = 0;
