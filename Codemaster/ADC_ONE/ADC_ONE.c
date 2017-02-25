@@ -10,6 +10,7 @@
 #define BAUD_LO_VAL ((unsigned char) (dXTAL/(BitRate*2*8)-1))
 #define BAUD_HI_VAL  0x80 //Clock UART from External clock of XTAL1
 
+#pragma interrupt 0  timer_irq
 #pragma interrupt 01 adc_irq
 #pragma interrupt 8 IRQ_uart_rx_tx
 
@@ -32,8 +33,10 @@ volatile unsigned int i;
 
 //переменная-счетчик каналов
 volatile unsigned char k;
-//переменная - датчик прерывания
+
+//переменные - датчики прерываний
 volatile unsigned char adc_convertion;
+volatile unsigned char timer_convertion;
 
 // переменные, необходимые для фильра
 short signed int ADCRES=0;
@@ -43,6 +46,8 @@ short signed int ADCRES=0;
 void USART0_Init(unsigned char spcon);
 void IRQ_uart_rx_tx();
 /***************/
+
+
 //включение АЦП
 void adc_init(unsigned char achannel)
 {
@@ -55,10 +60,11 @@ void adc_off()
 {
   ADC_EN = 0x00;
 }
+
+
 //включение УАРТ
-void USART1_Init(unsigned char spcon) {
-
-
+void USART1_Init(unsigned char spcon)
+{
   unsigned char reg;
   WSR=15;
   reg=IOC1;
@@ -70,23 +76,37 @@ void USART1_Init(unsigned char spcon) {
   BAUD_RATE1 = BAUD_HI_VAL;
   __NOP();
   __NOP();
-
-
 }
+
+
+//включение таймера
+void init_Timer(void){
+
+  unsigned char tmp, tmp1;
+  tmp = WSR;
+  WSR = (tmp & 0x80);
+  IOC1 = 0x25;
+  tmp1 = INT_MASK;
+  tmp1 |= 0x01;
+  INT_MASK = tmp1;
+  WSR = (tmp & 0x80) | 0xF;
+  TIMER1 = 0x0001;
+  WSR = (tmp & 0x80);
+                     }
+
 
 //начальные значения для фильтра
  void first_start ()
  {
-        adc_convertion = 0;
+        //adc_convertion = 0;
         for (k=0;k<3;k++)
                 {
                 adc_init(k);
                 __NOP ();
                 __NOP ();
                 __NOP ();
-                if ( adc_convertion ==1)
+                if ( ADC_RESULT&0x8000==0)
                         {
-                        adc_convertion = 0;
                         mas[k]=inverse(ADC_RESULT);
                         }
                 }
@@ -96,135 +116,126 @@ void USART1_Init(unsigned char spcon) {
 void main ()
 {
  unsigned char tmp;
-INT_MASK |= 0x02;
+//INT_MASK |= 0x02;
 __EI();
-  USART1_Init(SP_MODE_1);
-  adc_convertion = 0;
+
+  //adc_convertion = 0;
   adc_mode=(0x00 << 1);
   i=3;
   first_start();
   k=0;
+
+  USART1_Init(SP_MODE_1);
+  timer_convertion=0;
+  init_Timer();
   adc_init(k);
 //IOC1 = 0x20;
   while (1)
 {
-
-    __NOP ();
-    __NOP ();
-   status_uart = SP_STAT1;    //запоминаем регистр статуса
-   if (status_uart&0x40)
-   {    //Обрабатываем прерывание по приему
-        ByteReceived = SBUF_RX1;
-       // IOPORT1 = ByteReceived;
-   }
-        if ( (ByteReceived==228)&&(k==0) )
-        {
-        __NOP ();
-        __NOP ();
-        }
-        else
-
-    if ((ByteReceived==13)||(ByteReceived==228))    //разрешение передачи данных по УАРТ
-    if ( adc_convertion ==1)   //есть прерывание от АЦП
-    if (k<2)
-        {
-        adc_convertion = 0;
-        i++;
-        ADCRES=inverse(ADC_RESULT);
-        mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
-        clon=mas[k];
-         //SP_CON0=0x0;
-         if  (ByteReceived!=228)
-          SBUF_TX1 =k;
-          __NOP ();
-          __NOP ();
-
-         while (clon!=0)
-         {
-                tmp = WSR;
-
-                WSR=0;
-                status_uart = SP_STAT1;
-                WSR = tmp;
-                        if ((status_uart&0x8)!=0)
+    if (timer_convertion==1)
+    {
+                 timer_convertion=0;
+                 status_uart = SP_STAT1;    //запоминаем регистр статуса
+                        if (status_uart&0x40)
+                                {
+                                ByteReceived = SBUF_RX1;
+                                }
+                //если пришла команда запрета передачи по УАРТ
+                if  (ByteReceived==228)
                         {
-                        rab=clon&SDV_Low;
-                       if (ByteReceived!=228)
-                        SBUF_TX1 = rab;
-                        clon=clon>>8;
+                        __NOP ();
                         __NOP ();
                         }
-         }   //while clon!=0
-        //inverse(ADCRES);
-       // printf("%u %Xh @Xh\n",i,mas[k],k);
-        __NOP ();
-        __NOP ();
-        //SP_CON0=0x8;
-        k++;
-        adc_init(k);
-        } //if k<2
-    else
-                {
-                ADCRES=inverse(ADC_RESULT);
-                mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
-                clon=mas[k];
-                // SP_CON0=0x0;
-                if (ByteReceived!=228)
-                SBUF_TX1 =k;
-                __NOP ();
-                __NOP ();
-                while (clon!=0)
+
+
+                if (ByteReceived==13)    //разрешение передачи данных по УАРТ
                         {
-                        tmp = WSR;
-                        WSR=0;
-                        status_uart = SP_STAT1;
-                        WSR = tmp;
-                                if ((status_uart&0x8)!=0)
+                        if (ADC_RESULT&0x8000==0)
                                 {
-                                rab=clon&SDV_Low;
-                                if (ByteReceived!=228)
-                                SBUF_TX1 = rab;
-                                clon=clon>>8;
-                                __NOP ();
-                                }
-                        }  //while clon!=0
-                __NOP ();
-                __NOP ();
+                                if (k<2)
+                                        {
+                                        // adc_convertion = 0;
+                                        i++;
+                                        ADCRES=inverse(ADC_RESULT);
+                                        mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
+                                        clon=mas[k];
+                                        //SP_CON0=0x0;
+                                        SBUF_TX1 =k;
+                                        __NOP ();
+                                        __NOP ();
 
-                k=0 ;
-                i++;
-                adc_convertion = 0;
-                adc_init(k);
-                }  //else (k>=2)
-        } //while (1)
-}    //main
+                                        while (clon!=0)
+                                                {
+                                                tmp = WSR;
+                                                WSR=0;
+                                                status_uart = SP_STAT1;
+                                                WSR = tmp;
+                                                if ((status_uart&0x8)!=0)
+                                                        {
+                                                        rab=clon&SDV_Low;
+                                                        SBUF_TX1 = rab;
+                                                        clon=clon>>8;
+                                                        __NOP ();
+                                                        }
+                                                }   //while clon!=0
+                                                        //inverse(ADCRES);
+
+                                        __NOP ();
+                                        __NOP ();
+                                        //SP_CON0=0x8;
+                                        k++;
+                                        adc_init(k);
+                                        } //if k<2
+                                 else
+                                        {
+                                        ADCRES=inverse(ADC_RESULT);
+                                        mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
+                                        clon=mas[k];
+                                        // SP_CON0=0x0;
+
+                                        SBUF_TX1 =k;
+                                        __NOP ();
+                                        __NOP ();
+                                        while (clon!=0)
+                                                {
+                                                tmp = WSR;
+                                                WSR=0;
+                                                status_uart = SP_STAT1;
+                                                WSR = tmp;
+                                                if ((status_uart&0x8)!=0)
+                                                        {
+                                                        rab=clon&SDV_Low;
+                                                        SBUF_TX1 = rab;
+                                                        clon=clon>>8;
+                                                        __NOP ();
+                                                        }
+                                                }  //while clon!=0
+                                        __NOP ();
+                                        __NOP ();
+                                        //SP_CON0=0x8;
+
+                                        k=0 ;
+                                        i++;
+                                        adc_convertion = 0;
+                                        adc_init(k);
+                                        }  //else (k>=2)
+                                }//ADC_RESULT&0x8000==0
+
+                        }//if (ByteReceived==13)
+    } //if (timer_convertion==1)
+}// while (1)
+}//main
 
 
-//Датчик прерывания УАРТ
-void IRQ_uart_rx_tx()
-{
-  _di_();
-  status_uart = SP_STAT0;    //запоминаем регистр статуса
-   if (status_uart&0x40)     //Обрабатываем прерывание по приему
+    void    timer_irq()
         {
-        //ByteReceived = SBUF_RX0;
-        //IOPORT1 = ByteReceived;
-        //SBUF_TX0 = ByteReceived;
+        timer_convertion=1;
+        TIMER1 = 0x0001;
         }
-   else                      //Обрабатываем прерывание по передаче
-        {
-       /* if(clon!=0)
-                {
-                rab=clon&SDV_Low;
-                SBUF_TX0 = rab;
-                clon=clon>>8;
-                }
-        else
-                {
-                 SP_CON0=0x8;
-                } */
-        }
-  _ei_();
-}
 
+
+ //Датчик прерывания   ADC
+/*void adc_irq(){
+  adc_convertion = 1;
+} */
 

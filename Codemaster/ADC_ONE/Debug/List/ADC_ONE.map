@@ -36,8 +36,6 @@
 
   Module:                ??DEFAULT_CCB_MODULE     low-priority   
 
-  Module:                ??DEFAULT_INT00MODULE    low-priority   
-
   Module:                ??DEFAULT_INT01MODULE    low-priority   
 
   Module:                ??DEFAULT_INT02MODULE    low-priority   
@@ -51,6 +49,8 @@
   Module:                ??DEFAULT_INT06MODULE    low-priority   
 
   Module:                ??DEFAULT_INT07MODULE    low-priority   
+
+  Module:                ??DEFAULT_INT08MODULE    low-priority   
 
   Module:                ??DEFAULT_INT09MODULE    low-priority   
 
@@ -306,14 +306,14 @@
   ------------------------------------------------------------
   Module                      Size        Align        Offset 
   ============================================================
-  ??DEFAULT_INT00MODULE     00000003        00        00000000
-  ??DEFAULT_INT01MODULE     00000003        00        00000003
-  ??DEFAULT_INT02MODULE     00000003        00        00000006
-  ??DEFAULT_INT03MODULE     00000003        00        00000009
-  ??DEFAULT_INT04MODULE     00000003        00        0000000C
-  ??DEFAULT_INT05MODULE     00000003        00        0000000F
-  ??DEFAULT_INT06MODULE     00000003        00        00000012
-  ??DEFAULT_INT07MODULE     00000003        00        00000015
+  ??DEFAULT_INT01MODULE     00000003        00        00000000
+  ??DEFAULT_INT02MODULE     00000003        00        00000003
+  ??DEFAULT_INT03MODULE     00000003        00        00000006
+  ??DEFAULT_INT04MODULE     00000003        00        00000009
+  ??DEFAULT_INT05MODULE     00000003        00        0000000C
+  ??DEFAULT_INT06MODULE     00000003        00        0000000F
+  ??DEFAULT_INT07MODULE     00000003        00        00000012
+  ??DEFAULT_INT08MODULE     00000003        00        00000015
   ??DEFAULT_INT09MODULE     00000003        00        00000018
   ??DEFAULT_INT10MODULE     00000003        00        0000001B
   ??DEFAULT_INT11MODULE     00000003        00        0000001E
@@ -341,9 +341,9 @@
   ------------------------------------------------------------
   Module                      Size        Align        Offset 
   ============================================================
-  ADC_ONE                   0000038F        00        00000000
+  ADC_ONE                   000000FE        00        00000000
   ============================================================
-  Total:                    0000038F        00
+  Total:                    000000FE        00
 
 
   Segment: FUN_CODE__INVERSE                       code    REL
@@ -377,9 +377,9 @@
   ------------------------------------------------------------
   Module                      Size        Align        Offset 
   ============================================================
-  ADC_ONE                   0000000A        00        00000000
+  ADC_ONE                   00000012        00        00000000
   ============================================================
-  Total:                    0000000A        00
+  Total:                    00000012        00
 
 
   Segment: TMPREG_SEG                              reg     ABS
@@ -396,9 +396,9 @@
   ------------------------------------------------------------
   Module                      Size        Align        Offset 
   ============================================================
-  ADC_ONE                   0000001A        02        00000000
+  ADC_ONE                   0000001B        02        00000000
   ============================================================
-  Total:                    0000001A        02
+  Total:                    0000001B        02
 
          * * *  A D D R E S S   A R E A S   D E F I N I T I O N  * * *
 
@@ -472,22 +472,12 @@
 
   Segment:                       FUN_CODE__ADC_ONE
   Allocation:                    code
-  Size:                          00000389
+  Size:                          000000F8
   Align:                         00
   Address area:                  CODE
   Border:                        >00000000
   Placed at:                     000024FA
-  Ends at:                       00002882
-
-
-  Segment:                       FUN_CODE__INVERSE
-  Allocation:                    code
-  Size:                          00000027
-  Align:                         00
-  Address area:                  CODE
-  Border:                        >00000000
-  Placed at:                     00002883
-  Ends at:                       000028A9
+  Ends at:                       000025F1
 
 
   Segment:                       IDATA_INI__ADC_ONE
@@ -496,18 +486,18 @@
   Align:                         00
   Address area:                  CODE
   Border:                        >00000000
-  Placed at:                     000028AA
-  Ends at:                       000028AF
+  Placed at:                     000025F2
+  Ends at:                       000025F7
 
 
   Segment:                       ISR_CODE__ADC_ONE
   Allocation:                    code
-  Size:                          0000000A
+  Size:                          00000012
   Align:                         00
   Address area:                  CODE
   Border:                        >00000000
-  Placed at:                     000028B0
-  Ends at:                       000028B9
+  Placed at:                     000025F8
+  Ends at:                       00002609
 
 
   Segment:                       CSTACK
@@ -532,12 +522,12 @@
 
   Segment:                       UDATA__ADC_ONE
   Allocation:                    data
-  Size:                          0000001A
+  Size:                          0000001B
   Align:                         02
   Address area:                  DATA
   Border:                        >00000000
   Placed at:                     00000208
-  Ends at:                       00000221
+  Ends at:                       00000222
 
                 * * *  A D D R E S S   A R E A S   M A P  * * *
 
@@ -551,11 +541,10 @@
   CSEG__??ISR                    0     000024B0    000024E5  00000036    54
   ??DATA_SEGMENT_ADDRESSES       1     000024E6    000024ED  00000008    8
   ??INIT_DATA_SEGMENT_ADDRESSES  1     000024EE    000024F9  0000000C    12
-  FUN_CODE__ADC_ONE              0     000024FA    00002882  00000389    905
-  FUN_CODE__INVERSE              0     00002883    000028A9  00000027    39
-  IDATA_INI__ADC_ONE             0     000028AA    000028AF  00000006    6
-  ISR_CODE__ADC_ONE              0     000028B0    000028B9  0000000A    10
-  *** GAP ***                    -     000028BA    0000FFFF  0000D746    55110
+  FUN_CODE__ADC_ONE              0     000024FA    000025F1  000000F8    248
+  IDATA_INI__ADC_ONE             0     000025F2    000025F7  00000006    6
+  ISR_CODE__ADC_ONE              0     000025F8    00002609  00000012    18
+  *** GAP ***                    -     0000260A    0000FFFF  0000D9F6    55798
 
 
   Address area: DATA
@@ -565,8 +554,8 @@
   CSTACK                         0     00000100    000001FF  00000100    256
   IDATA__ADC_ONE                 2     00000200    00000205  00000006    6
   *** GAP ***                    -     00000206    00000207  00000002    2
-  UDATA__ADC_ONE                 2     00000208    00000221  0000001A    26
-  *** GAP ***                    -     00000222    000017FF  000015DE    5598
+  UDATA__ADC_ONE                 2     00000208    00000222  0000001B    27
+  *** GAP ***                    -     00000223    000017FF  000015DD    5597
 
 
   Address area: REG
@@ -583,15 +572,15 @@
   Name                           Segment          Value       Type info
 
   ?CCB_DATA                      n/a             0000001F     n/a
-  ?INTERRUPT00                   CSEG__??ISR     000024B0     n/a
-  ?INTERRUPT01                   CSEG__??ISR     000024B3     n/a
-  ?INTERRUPT02                   CSEG__??ISR     000024B6     n/a
-  ?INTERRUPT03                   CSEG__??ISR     000024B9     n/a
-  ?INTERRUPT04                   CSEG__??ISR     000024BC     n/a
-  ?INTERRUPT05                   CSEG__??ISR     000024BF     n/a
-  ?INTERRUPT06                   CSEG__??ISR     000024C2     n/a
-  ?INTERRUPT07                   CSEG__??ISR     000024C5     n/a
-  ?INTERRUPT08                   ISR_CODE__ADC_O 000028B0     n/a
+  ?INTERRUPT00                   ISR_CODE__ADC_O 000025F8     n/a
+  ?INTERRUPT01                   CSEG__??ISR     000024B0     n/a
+  ?INTERRUPT02                   CSEG__??ISR     000024B3     n/a
+  ?INTERRUPT03                   CSEG__??ISR     000024B6     n/a
+  ?INTERRUPT04                   CSEG__??ISR     000024B9     n/a
+  ?INTERRUPT05                   CSEG__??ISR     000024BC     n/a
+  ?INTERRUPT06                   CSEG__??ISR     000024BF     n/a
+  ?INTERRUPT07                   CSEG__??ISR     000024C2     n/a
+  ?INTERRUPT08                   CSEG__??ISR     000024C5     n/a
   ?INTERRUPT09                   CSEG__??ISR     000024C8     n/a
   ?INTERRUPT10                   CSEG__??ISR     000024CB     n/a
   ?INTERRUPT11                   CSEG__??ISR     000024CE     n/a
@@ -635,7 +624,6 @@
   IOS0                           ??ABS_REG       00000015 *** unsigned char
   IOS1                           ??ABS_REG       00000016 *** unsigned char
   IOS2                           ??ABS_REG       00000017 *** unsigned char
-  IRQ_uart_rx_tx                 ISR_CODE__ADC_O 000028B0 *** <function>
   PTSSEL                         ??ABS_REG       00000004 *** unsigned int
   PTSSEL_HI                      ??ABS_REG       00000005 *** unsigned char
   PTSSEL_LO                      ??ABS_REG       00000004 *** unsigned char
@@ -653,12 +641,12 @@
   SP                             TMPREG_SEG      00000018     unsigned int
   SP_CON0                        ??ABS_REG       00000011 *** unsigned char
   SP_CON1                        ??ABS_DATA      00001FAF     unsigned char
-  SP_STAT0                       ??ABS_REG       00000011     unsigned char
+  SP_STAT0                       ??ABS_REG       00000011 *** unsigned char
   SP_STAT1                       ??ABS_DATA      00001FAD     unsigned char
   T2CAPTURE                      ??ABS_REG       0000000C *** unsigned int
   T2CAPTURE_HI                   ??ABS_REG       0000000D *** unsigned char
   T2CAPTURE_LO                   ??ABS_REG       0000000C *** unsigned char
-  TIMER1                         ??ABS_REG       0000000A *** unsigned int
+  TIMER1                         ??ABS_REG       0000000A     unsigned int
   TIMER1_HI                      ??ABS_REG       0000000B *** unsigned char
   TIMER1_LO                      ??ABS_REG       0000000A *** unsigned char
   TIMER2                         ??ABS_REG       0000000C *** unsigned int
@@ -674,14 +662,16 @@
   alfa                           IDATA__ADC_ONE  00000200 *** float
   clon                           UDATA__ADC_ONE  00000218 *** unsigned short
   exit                           CODE__??CLIB    00002165 *** <function>
-  first_start                    FUN_CODE__ADC_O 0000253C *** <function>
+  first_start                    FUN_CODE__ADC_O 00002566 *** <function>
   i                              UDATA__ADC_ONE  0000021A *** unsigned int
-  inverse                        FUN_CODE__INVER 00002883     <function>
+  init_Timer                     FUN_CODE__ADC_O 0000253C *** <function>
   k                              UDATA__ADC_ONE  0000021F *** unsigned char
-  main                           FUN_CODE__ADC_O 00002599     <function>
+  main                           FUN_CODE__ADC_O 0000258E     <function>
   mas                            UDATA__ADC_ONE  00000208 *** <array>
   rab                            UDATA__ADC_ONE  00000220 *** unsigned char
   status_uart                    UDATA__ADC_ONE  00000221 *** unsigned char
+  timer_convertion               UDATA__ADC_ONE  00000222 *** unsigned char
+  timer_irq                      ISR_CODE__ADC_O 000025F8 *** <function>
 
   ***  These symbols do not resolve any external reference
 

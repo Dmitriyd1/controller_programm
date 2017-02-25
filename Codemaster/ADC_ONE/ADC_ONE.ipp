@@ -198,7 +198,7 @@ Scheme name=Default
 [[Main window32]
 Style=399441920
 ExStyle=262400
-WINDOWPLACEMENT=2C0000000200000003000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FFFFFF000000007F050000FD020000
+WINDOWPLACEMENT=2C00000002000000030000000083FFFF0083FFFFFFFFFFFFFFFFFFFFF8FFFFFF000000007F050000FD020000
 
 [[Desktop options]
 EditToolbar=0
@@ -691,6 +691,12 @@ Y=265
 W=389
 H=607
 
+[[[32163]
+X=424
+Y=398
+W=431
+H=172
+
 [[Color_54A1512B]
 InvUsed=1
 
@@ -971,12 +977,12 @@ Id=27
 Splitter=0
 W=779
 H=609
-CaretX=26
-CaretY=17
+CaretX=4
+CaretY=35
 Toolbar=1
 StartItem=0
 StartHItem=0
-NumItems=230
+NumItems=241
 NumHItems=32760
 CurItem=0
 LOGFONT=F4FFFFFF000000000000000000000000000000000000000100000200436F7572696572204E6577000000000000000000000000000000000000000000
@@ -987,10 +993,10 @@ TabTitle=ADC_ONE.c
 FileName=.\ADC_ONE.c
 InsertMode=1
 BlockStat=0
-BlockLine1=211
-BlockLine2=211
-BlockCol1=26
-BlockCol2=26
+BlockLine1=0
+BlockLine2=239
+BlockCol1=0
+BlockCol2=4
 LineNumbersOn=1
 
 [[Window32_2_Pane_1]
@@ -1076,9 +1082,9 @@ H=136
 CaretX=0
 CaretY=0
 Toolbar=1
-StartItem=26
+StartItem=30
 StartHItem=0
-NumItems=33
+NumItems=37
 NumHItems=512
 CurItem=0
 LOGFONT=F4FFFFFF000000000000000000000000000000000000000100000200436F7572696572204E6577000000000000000000000000000000000000000000
@@ -1530,21 +1536,21 @@ USETOOLIW=1
 [[[K1874BE71T Rev.2]
 [[[[0]
 Name=Default
-StartAddr=0x2000
-EndAddr=0xFFFF
-AddrSpaceName=Code
-AddrAreaName=Code
-CodeAllowed=1
-DataAllowed=0
-
-[[[[1]
-Name=Default
 StartAddr=0x100
 EndAddr=0x7FF
 AddrSpaceName=Data
 AddrAreaName=Data
 CodeAllowed=0
 DataAllowed=1
+
+[[[[1]
+Name=Default
+StartAddr=0x2000
+EndAddr=0xFFFF
+AddrSpaceName=Code
+AddrAreaName=Code
+CodeAllowed=1
+DataAllowed=0
 
 [[[[2]
 Name=Default
@@ -1717,21 +1723,21 @@ USETOOLIW=1
 [[[K1874BE71T Rev.2]
 [[[[0]
 Name=Default
-StartAddr=0x2000
-EndAddr=0xFFFF
-AddrSpaceName=Code
-AddrAreaName=Code
-CodeAllowed=1
-DataAllowed=0
-
-[[[[1]
-Name=Default
 StartAddr=0x100
 EndAddr=0x7FF
 AddrSpaceName=Data
 AddrAreaName=Data
 CodeAllowed=0
 DataAllowed=1
+
+[[[[1]
+Name=Default
+StartAddr=0x2000
+EndAddr=0xFFFF
+AddrSpaceName=Code
+AddrAreaName=Code
+CodeAllowed=1
+DataAllowed=0
 
 [[[[2]
 Name=Default
