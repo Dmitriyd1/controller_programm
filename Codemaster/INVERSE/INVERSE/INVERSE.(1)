@@ -1,0 +1,16 @@
+-A (code)CODE(02000H-09FFFH)
+-A (data)DATA(0100H-0FFFH)
+-m
+-Z CSTACK(256)
+-Z HEAP(0)
+-M 10
+-M 20
+-M 21
+-M 60
+-M 80
+-O"D:\CodeMaster-96\1_32_00\CMC-96\Lib"
+-E"D:\Games\progr\INVERSE\INVERSE\Debug\Exe\INVERSE"
+-F MI
+D:\Games\progr\INVERSE\INVERSE\Debug\Obj\INVERSE.MCO
+K1874VE96T_av3.mcl
+c96_cv2.mcl

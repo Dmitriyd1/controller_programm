@@ -1,0 +1,63 @@
+*******************************************************************************
+*                                                                             *
+*              K1874BE96T C CROSS COMPILER Version 2.00.151126                *
+*                          Copyright (C) 2012 NIIET                           *
+*                                                                             *
+*******************************************************************************
+
+Warning[C146] .\INVERSE\INVERSE.c(8,0): 'k' is assigned a value which is never used in function 'main'
+Warning[C146] .\INVERSE\INVERSE.c(9,0): 'k' is assigned a value which is never used in function 'main'
+Warning[C146] .\INVERSE\INVERSE.c(19,0): 'res' is assigned a value which is never used in function 'inverse'
+                        main:
+;FILE: .\INVERSE\INVERSE.c
+;000004    int main ()
+;000006    int c=0x200F;
+00000000    A10F201E                       	LD    c?main,#200Fh
+;000008    short signed int k=0;
+00000004    011C                           	CLR   k?main
+;000009    k=inverse(c);
+00000006    A01E1C                         	LD    k?main,c?main
+00000009    2803                           	SCALL inverse
+;000010    return(0) ;
+0000000B    011C                           	CLR   _AX
+;000011    }
+0000000D    F0                             	RET   
+.ENDF
+                     inverse:
+;000014    short signed int inverse (int a)
+0000000E    C824                           	PUSH  _EX
+00000010    A01C24                         	LD    _EX,_AX
+;000016    int indicator=0x2000;
+00000013    A1002022                       	LD    indicator?inverse,#2000h
+;000017    int add=0x8000;
+00000017    A1008020                       	LD    add?inverse,#8000h
+;000018    int znak=0x9FFF;
+0000001B    A1FF9F1E                       	LD    znak?inverse,#9FFFh
+;000019    short signed int res=0;
+0000001F    011C                           	CLR   res?inverse
+;000020     if ((a&indicator)!=0  )
+00000021    4022241C                       	AND   _AX,a?inverse,indicator?inverse
+00000025    88001C                         	CMP   _AX,0
+00000028    DF0B                           	JE    ??_1_ELSE
+;000021     {
+;000022      res=(a|add)&znak;
+0000002A    A0241C                         	LD    res?inverse,a?inverse
+0000002D    80201C                         	OR    res?inverse,add?inverse
+00000030    601E1C                         	AND   res?inverse,znak?inverse
+;000023     return res;
+00000033    2003                           	SJMP  ??_EXIT?_inverse
+;000024     }
+                   ??_1_ELSE:
+;000025     else   {
+;000026     res=a;
+00000035    A0241C                         	LD    res?inverse,a?inverse
+;000027     return res;
+;000028            }
+;000029    }
+            ??_EXIT?_inverse:
+00000038    CC24                           	POP   _EX
+0000003A    F0                             	RET   
+.ENDF
+
+.\INVERSE\INVERSE.c: 59 byte(s), 3574 line(s), 0 error(s), 3 warning(s)
+

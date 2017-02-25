@@ -1,0 +1,41 @@
+*******************************************************************************
+*                                                                             *
+*              K1874BE96T C CROSS COMPILER Version 2.00.151126                *
+*                          Copyright (C) 2012 NIIET                           *
+*                                                                             *
+*******************************************************************************
+
+Warning[C146] ..\INVERSE\INVERSE\INVERSE.c(11,0): 'res' is assigned a value which is never used in function 'inverse'
+                     inverse:
+;FILE: ..\INVERSE\INVERSE\INVERSE.c
+;000007    short signed int inverse (int a)
+00000000    A01C22                         	LD    _DX,_AX
+;000009    int indicator=0x2000;
+00000003    A1002020                       	LD    indicator?inverse,#2000h
+;000010    int add=0xE000;
+00000007    A100E01E                       	LD    add?inverse,#0E000h
+;000011    int res=0;
+0000000B    011C                           	CLR   res?inverse
+;000012     if ((a&indicator)!=0  )
+0000000D    4020221C                       	AND   _AX,a?inverse,indicator?inverse
+00000011    88001C                         	CMP   _AX,0
+00000014    DF0D                           	JE    ??_1_ELSE
+;000013     {
+;000014      res=~(a|add)+1;
+00000016    A0221C                         	LD    res?inverse,a?inverse
+00000019    801E1C                         	OR    res?inverse,add?inverse
+0000001C    021C                           	NOT   res?inverse
+0000001E    071C                           	INC   res?inverse
+;000015     return res*(-1);
+00000020    031C                           	NEG   res?inverse
+00000022    F0                             	RET   
+;000016     }
+                   ??_1_ELSE:
+;000018     return a;
+00000023    A0221C                         	LD    _AX,a?inverse
+;000019    }
+00000026    F0                             	RET   
+.ENDF
+
+..\INVERSE\INVERSE\INVERSE.c: 39 byte(s), 2628 line(s), 0 error(s), 1 warning(s)
+

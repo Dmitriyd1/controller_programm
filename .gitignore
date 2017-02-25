@@ -1,0 +1,7 @@
+#add files to the ignore list (18.02.2017)
+Altium/
+*.png
+*.rar
+TZ.doc
+ListMU2.docx
+ADC2.CIR

@@ -1,0 +1,462 @@
+*******************************************************************************
+*                                                                             *
+*              K1874BE96T C CROSS COMPILER Version 2.00.151126                *
+*                          Copyright (C) 2012 NIIET                           *
+*                                                                             *
+*******************************************************************************
+
+Warning[C17] .\ADC_ONE.c(103,38): Call to function 'inverse' without prototype
+Warning[C17] .\ADC_ONE.c(146,22): Call to function 'inverse' without prototype
+Warning[C24] .\ADC_ONE.c(148,19): Conversion may loose significant digits
+Warning[C17] .\ADC_ONE.c(181,30): Call to function 'inverse' without prototype
+Warning[C24] .\ADC_ONE.c(183,27): Conversion may loose significant digits
+Warning[C5] .\ADC_ONE.c(13,21): Bad #pragma interrupt
+Warning[C93] .\ADC_ONE.c(222,0): Code has no effect
+Warning[C83] .\ADC_ONE.c(88,0): Parameter 'spcon' is never used in function 'USART1_Init'
+                    adc_init:
+;FILE: .\ADC_ONE.c
+;000047    void adc_init(unsigned char achannel)
+;000049      ADC_EN = 0x05;
+00000000    B1051D                         	LDB   _AH,#05h
+00000003    C70100001D                     	STB   _AH,ADC_EN
+;000050      ADC_CON = 0x01 | adc_mode | (achannel << 3);
+00000008    19031C                         	SHLB  achannel?adc_init,#03h
+0000000B    930116001C                     	ORB   achannel?adc_init,adc_mode
+00000010    91011C                         	ORB   achannel?adc_init,#01h
+00000013    C70100001C                     	STB   achannel?adc_init,ADC_CON
+;000051    }
+00000018    F0                             	RET   
+.ENDF
+                     adc_off:
+;000054    void adc_off()
+;000056      ADC_EN = 0x00;
+00000019    C701000000                     	STB   00h,ADC_EN
+;000057    }
+0000001E    F0                             	RET   
+.ENDF
+                 USART1_Init:
+;000059    void USART1_Init(unsigned char spcon) {
+;000076      WSR=15;
+0000001F    B10F00                         	LDB   WSR,#0Fh
+;000077      reg=IOC1;
+00000022    B0001C                         	LDB   reg?USART1_Init,IOC1
+;000078      reg|=0x20;
+00000025    91201C                         	ORB   reg?USART1_Init,#20h
+;000079      WSR=0;
+00000028    1100                           	CLRB  WSR
+;000080      IOC1=reg;
+0000002A    B01C00                         	LDB   IOC1,reg?USART1_Init
+;000081      SP_CON1=0x09;
+0000002D    B1091C                         	LDB   _AL,#09h
+00000030    C70100001C                     	STB   _AL,SP_CON1
+;000082      BAUD_RATE1 = BAUD_LO_VAL;  //write Baud rate value
+00000035    B1811C                         	LDB   _AL,#81h
+00000038    C70100001C                     	STB   _AL,BAUD_RATE1
+;000083      BAUD_RATE1 = BAUD_HI_VAL;
+0000003D    B1801C                         	LDB   _AL,#80h
+00000040    C70100001C                     	STB   _AL,BAUD_RATE1
+;000084      __NOP();
+00000045    FD                             	NOP   
+;000085      __NOP();
+00000046    FD                             	NOP   
+;000088    }
+00000047    F0                             	RET   
+.ENDF
+                 first_start:
+;000091     void first_start ()
+00000048    C824                           	PUSH  _EX
+;000093            adc_convertion = 0;
+0000004A    C701150000                     	STB   00h,adc_convertion
+;000094            for (k=0;k<3;k++)
+0000004F    C701170000                     	STB   00h,k
+00000054    2042                           	SJMP  ??_1_CHECK
+                   ??_1_LOOP:
+;000095                    {
+;000096                    adc_init(k);
+00000056    B30117001C                     	LDB   _AL,k
+0000005B    2FA3                           	SCALL adc_init
+;000097                    __NOP ();
+0000005D    FD                             	NOP   
+;000098                    __NOP ();
+0000005E    FD                             	NOP   
+;000099                    __NOP ();
+0000005F    FD                             	NOP   
+;000100                    if ( adc_convertion ==1)
+00000060    B30115001C                     	LDB   _AL,adc_convertion
+00000065    99011C                         	CMPB  _AL,#01h
+00000068    D722                           	JNE   ??_2_ELSE
+;000101                            {
+;000102                            adc_convertion = 0;
+0000006A    C701150000                     	STB   00h,adc_convertion
+;000103                            mas[k]=inverse(ADC_RESULT);
+0000006F    AF01170024                     	LDBZE _EX,k
+00000074    090224                         	SHL   _EX,#02h
+00000077    A30100001C                     	LD    _AX,ADC_RESULT
+0000007C    EF81FF                         	LCALL inverse
+0000007F    EF7EFF                         	LCALL ??FPCONV16
+00000082    C32500001C                     	ST    _AX,mas[_EX]
+00000087    C32502001E                     	ST    _BX,(mas+2)[_EX]
+;000104                            }
+                   ??_2_ELSE:
+;000105                    }
+0000008C    B30117001C                     	LDB   _AL,k
+00000091    171C                           	INCB  _AL
+00000093    C70117001C                     	STB   _AL,k
+                  ??_1_CHECK:
+00000098    B30117001C                     	LDB   _AL,k
+0000009D    99031C                         	CMPB  _AL,#03h
+000000A0    D3B4                           	JNC   ??_1_LOOP
+;000107     }
+000000A2    CC24                           	POP   _EX
+000000A4    F0                             	RET   
+.ENDF
+                        main:
+;000109    void main ()
+000000A5    C824                           	PUSH  _EX
+000000A7    C826                           	PUSH  _FX
+000000A9    C828                           	PUSH  _GX
+000000AB    69040018                       	SUB   _SP,#0004h
+;000112    INT_MASK |= 0x02;
+000000AF    910200                         	ORB   INT_MASK,#02h
+;000113    __EI();
+000000B2    FB                             	EI    
+;000114      USART1_Init(SP_MODE_1);
+000000B3    B1091C                         	LDB   _AL,#09h
+000000B6    2F67                           	SCALL USART1_Init
+;000115      adc_convertion = 0;
+000000B8    C701150000                     	STB   00h,adc_convertion
+;000116      adc_mode=(0x00 << 1);
+000000BD    C701160000                     	STB   00h,adc_mode
+;000117      i=3;
+000000C2    AD031C                         	LDBZE _AX,#03h
+000000C5    C30112001C                     	ST    _AX,i
+;000118      first_start();
+000000CA    2F7C                           	SCALL first_start
+;000119      k=0;
+000000CC    C701170000                     	STB   00h,k
+;000120      adc_init(k);
+000000D1    B30117001C                     	LDB   _AL,k
+000000D6    2F28                           	SCALL adc_init
+;000122      while (1)
+                     ??_3_DO:
+;000123    {
+;000125        __NOP ();
+000000D8    FD                             	NOP   
+;000126        __NOP ();
+000000D9    FD                             	NOP   
+;000127       status_uart = SP_STAT1;    //запоминаем регистр статуса
+000000DA    B30100001C                     	LDB   _AL,SP_STAT1
+000000DF    C70119001C                     	STB   _AL,status_uart
+;000128       if (status_uart&0x40)
+000000E4    71401C                         	ANDB  _AL,#40h
+000000E7    98001C                         	CMPB  _AL,0
+000000EA    DF0A                           	JE    ??_4_ELSE
+;000129       {    //Обрабатываем прерывание по приему
+;000130            ByteReceived = SBUF_RX1;
+000000EC    B30100001C                     	LDB   _AL,SBUF_RX1
+000000F1    C70114001C                     	STB   _AL,ByteReceived
+;000132       }
+                   ??_4_ELSE:
+;000133            if ( (ByteReceived==228)&&(k==0) )
+000000F6    B30114001C                     	LDB   _AL,ByteReceived
+000000FB    99E41C                         	CMPB  _AL,#0E4h
+000000FE    D70E                           	JNE   ??_5_ELSE
+00000100    B30117001C                     	LDB   _AL,k
+00000105    98001C                         	CMPB  _AL,0
+00000108    D704                           	JNE   ??_5_ELSE
+;000134            {
+;000135            __NOP ();
+0000010A    FD                             	NOP   
+;000136            __NOP ();
+0000010B    FD                             	NOP   
+;000137            }
+0000010C    27CA                           	SJMP  ??_3_DO
+                   ??_5_ELSE:
+;000140        if ((ByteReceived==13)||(ByteReceived==228))    //разрешение передачи данных по УАРТ
+0000010E    B30114001C                     	LDB   _AL,ByteReceived
+00000113    990D1C                         	CMPB  _AL,#0Dh
+00000116    DF05                           	JE    ??_7_IF
+00000118    99E41C                         	CMPB  _AL,#0E4h
+0000011B    D7BB                           	JNE   ??_3_DO
+                     ??_7_IF:
+;000141        if ( adc_convertion ==1)   //есть прерывание от АЦП
+0000011D    B30115001C                     	LDB   _AL,adc_convertion
+00000122    99011C                         	CMPB  _AL,#01h
+00000125    D7B1                           	JNE   ??_3_DO
+;000142        if (k<2)
+00000127    B30117001C                     	LDB   _AL,k
+0000012C    99021C                         	CMPB  _AL,#02h
+0000012F    D302                           	JNC   ??_10_ELSE_BYPASS_12F
+00000131    212C                           	SJMP  ??_10_ELSE
+       ??_10_ELSE_BYPASS_12F:
+;000143            {
+;000144            adc_convertion = 0;
+00000133    C701150000                     	STB   00h,adc_convertion
+;000145            i++;
+00000138    A30112001C                     	LD    _AX,i
+0000013D    071C                           	INC   _AX
+0000013F    C30112001C                     	ST    _AX,i
+;000146            ADCRES=inverse(ADC_RESULT);
+00000144    A30100001C                     	LD    _AX,ADC_RESULT
+00000149    EFB4FE                         	LCALL inverse
+0000014C    C3010C001C                     	ST    _AX,ADCRES
+;000147            mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
+00000151    AF01170028                     	LDBZE _GX,k
+00000156    090228                         	SHL   _GX,#02h
+00000159    AF01170024                     	LDBZE _EX,k
+0000015E    090224                         	SHL   _EX,#02h
+00000161    AD001C                         	LDBZE _AX,#00h
+00000164    A1803F1E                       	LD    _BX,#3F80h
+00000168    A301000020                     	LD    _CX,alfa
+0000016D    A301020022                     	LD    _DX,(alfa+2)
+00000172    EF8BFE                         	LCALL ??FPSUB
+00000175    C318001C                       	ST    _AX,00h[_SP]
+00000179    C318021E                       	ST    _BX,02h[_SP]
+0000017D    AF01170026                     	LDBZE _FX,k
+00000182    090226                         	SHL   _FX,#02h
+00000185    A3010C001C                     	LD    _AX,ADCRES
+0000018A    EF73FE                         	LCALL ??FPCONV16
+0000018D    A327000020                     	LD    _CX,mas[_FX]
+00000192    A327020022                     	LD    _DX,(mas+2)[_FX]
+00000197    EF66FE                         	LCALL ??FPSUB
+0000019A    A3180020                       	LD    _CX,00h[_SP]
+0000019E    A3180222                       	LD    _DX,02h[_SP]
+000001A2    EF5BFE                         	LCALL ??FPMUL
+000001A5    A325000020                     	LD    _CX,mas[_EX]
+000001AA    A325020022                     	LD    _DX,(mas+2)[_EX]
+000001AF    EF4EFE                         	LCALL ??FPADD
+000001B2    C32900001C                     	ST    _AX,mas[_GX]
+000001B7    C32902001E                     	ST    _BX,(mas+2)[_GX]
+;000148            clon=mas[k];
+000001BC    AF01170020                     	LDBZE _CX,k
+000001C1    090220                         	SHL   _CX,#02h
+000001C4    A32100001C                     	LD    _AX,mas[_CX]
+000001C9    A32102001E                     	LD    _BX,(mas+2)[_CX]
+000001CE    EF2FFE                         	LCALL ??FPTRUNC
+000001D1    C30110001C                     	ST    _AX,clon
+;000150             if  (ByteReceived!=228)
+000001D6    B30114001C                     	LDB   _AL,ByteReceived
+000001DB    99E41C                         	CMPB  _AL,#0E4h
+000001DE    DF0A                           	JE    ??_11_ELSE
+;000151              SBUF_TX1 =k;
+000001E0    B30117001C                     	LDB   _AL,k
+000001E5    C70100001C                     	STB   _AL,SBUF_TX1
+                  ??_11_ELSE:
+;000152              __NOP ();
+000001EA    FD                             	NOP   
+;000153              __NOP ();
+000001EB    FD                             	NOP   
+;000155             while (clon!=0)
+000001EC    2050                           	SJMP  ??_12_CONTINUE
+                    ??_12_DO:
+;000156             {
+;000157                    tmp = WSR;
+000001EE    B0001C                         	LDB   tmp?main,WSR
+;000159                    WSR=0;
+000001F1    1100                           	CLRB  WSR
+;000160                    status_uart = SP_STAT1;
+000001F3    B30100001D                     	LDB   _AH,SP_STAT1
+000001F8    C70119001D                     	STB   _AH,status_uart
+;000161                    WSR = tmp;
+000001FD    B01C00                         	LDB   WSR,tmp?main
+;000162                            if ((status_uart&0x8)!=0)
+00000200    B30119001C                     	LDB   _AL,status_uart
+00000205    71081C                         	ANDB  _AL,#08h
+00000208    98001C                         	CMPB  _AL,0
+0000020B    DF31                           	JE    ??_13_ELSE
+;000163                            {
+;000164                            rab=clon&SDV_Low;
+0000020D    B30110001C                     	LDB   _AL,clon
+00000212    730104001C                     	ANDB  _AL,SDV_Low
+00000217    C70118001C                     	STB   _AL,rab
+;000165                           if (ByteReceived!=228)
+0000021C    B30114001C                     	LDB   _AL,ByteReceived
+00000221    99E41C                         	CMPB  _AL,#0E4h
+00000224    DF0A                           	JE    ??_14_ELSE
+;000166                            SBUF_TX1 = rab;
+00000226    B30118001C                     	LDB   _AL,rab
+0000022B    C70100001C                     	STB   _AL,SBUF_TX1
+                  ??_14_ELSE:
+;000167                            clon=clon>>8;
+00000230    A30110001C                     	LD    _AX,clon
+00000235    08081C                         	SHR   _AX,#08h
+00000238    C30110001C                     	ST    _AX,clon
+;000168                            __NOP ();
+0000023D    FD                             	NOP   
+;000169                            }
+                  ??_13_ELSE:
+;000170             }   //while clon!=0
+              ??_12_CONTINUE:
+0000023E    A30110001C                     	LD    _AX,clon
+00000243    88001C                         	CMP   _AX,0
+00000246    D7A6                           	JNE   ??_12_DO
+;000173            __NOP ();
+00000248    FD                             	NOP   
+;000174            __NOP ();
+00000249    FD                             	NOP   
+;000176            k++;
+0000024A    B30117001C                     	LDB   _AL,k
+0000024F    171C                           	INCB  _AL
+00000251    C70117001C                     	STB   _AL,k
+;000177            adc_init(k);
+00000256    B30117001C                     	LDB   _AL,k
+0000025B    2DA3                           	SCALL adc_init
+;000178            } //if k<2
+0000025D    2679                           	SJMP  ??_3_DO
+                  ??_10_ELSE:
+;000180                    {
+;000181                    ADCRES=inverse(ADC_RESULT);
+0000025F    A30100001C                     	LD    _AX,ADC_RESULT
+00000264    EF99FD                         	LCALL inverse
+00000267    C3010C001C                     	ST    _AX,ADCRES
+;000182                    mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
+0000026C    AF01170028                     	LDBZE _GX,k
+00000271    090228                         	SHL   _GX,#02h
+00000274    AF01170024                     	LDBZE _EX,k
+00000279    090224                         	SHL   _EX,#02h
+0000027C    AD001C                         	LDBZE _AX,#00h
+0000027F    A1803F1E                       	LD    _BX,#3F80h
+00000283    A301000020                     	LD    _CX,alfa
+00000288    A301020022                     	LD    _DX,(alfa+2)
+0000028D    EF70FD                         	LCALL ??FPSUB
+00000290    C318001C                       	ST    _AX,00h[_SP]
+00000294    C318021E                       	ST    _BX,02h[_SP]
+00000298    AF01170026                     	LDBZE _FX,k
+0000029D    090226                         	SHL   _FX,#02h
+000002A0    A3010C001C                     	LD    _AX,ADCRES
+000002A5    EF58FD                         	LCALL ??FPCONV16
+000002A8    A327000020                     	LD    _CX,mas[_FX]
+000002AD    A327020022                     	LD    _DX,(mas+2)[_FX]
+000002B2    EF4BFD                         	LCALL ??FPSUB
+000002B5    A3180020                       	LD    _CX,00h[_SP]
+000002B9    A3180222                       	LD    _DX,02h[_SP]
+000002BD    EF40FD                         	LCALL ??FPMUL
+000002C0    A325000020                     	LD    _CX,mas[_EX]
+000002C5    A325020022                     	LD    _DX,(mas+2)[_EX]
+000002CA    EF33FD                         	LCALL ??FPADD
+000002CD    C32900001C                     	ST    _AX,mas[_GX]
+000002D2    C32902001E                     	ST    _BX,(mas+2)[_GX]
+;000183                    clon=mas[k];
+000002D7    AF01170020                     	LDBZE _CX,k
+000002DC    090220                         	SHL   _CX,#02h
+000002DF    A32100001C                     	LD    _AX,mas[_CX]
+000002E4    A32102001E                     	LD    _BX,(mas+2)[_CX]
+000002E9    EF14FD                         	LCALL ??FPTRUNC
+000002EC    C30110001C                     	ST    _AX,clon
+;000185                    if (ByteReceived!=228)
+000002F1    B30114001C                     	LDB   _AL,ByteReceived
+000002F6    99E41C                         	CMPB  _AL,#0E4h
+000002F9    DF0A                           	JE    ??_15_ELSE
+;000186                    SBUF_TX1 =k;
+000002FB    B30117001C                     	LDB   _AL,k
+00000300    C70100001C                     	STB   _AL,SBUF_TX1
+                  ??_15_ELSE:
+;000187                    __NOP ();
+00000305    FD                             	NOP   
+;000188                    __NOP ();
+00000306    FD                             	NOP   
+;000189                    while (clon!=0)
+00000307    2050                           	SJMP  ??_16_CONTINUE
+                    ??_16_DO:
+;000190                            {
+;000191                            tmp = WSR;
+00000309    B0001C                         	LDB   tmp?main,WSR
+;000192                            WSR=0;
+0000030C    1100                           	CLRB  WSR
+;000193                            status_uart = SP_STAT1;
+0000030E    B30100001D                     	LDB   _AH,SP_STAT1
+00000313    C70119001D                     	STB   _AH,status_uart
+;000194                            WSR = tmp;
+00000318    B01C00                         	LDB   WSR,tmp?main
+;000195                                    if ((status_uart&0x8)!=0)
+0000031B    B30119001C                     	LDB   _AL,status_uart
+00000320    71081C                         	ANDB  _AL,#08h
+00000323    98001C                         	CMPB  _AL,0
+00000326    DF31                           	JE    ??_17_ELSE
+;000196                                    {
+;000197                                    rab=clon&SDV_Low;
+00000328    B30110001C                     	LDB   _AL,clon
+0000032D    730104001C                     	ANDB  _AL,SDV_Low
+00000332    C70118001C                     	STB   _AL,rab
+;000198                                    if (ByteReceived!=228)
+00000337    B30114001C                     	LDB   _AL,ByteReceived
+0000033C    99E41C                         	CMPB  _AL,#0E4h
+0000033F    DF0A                           	JE    ??_18_ELSE
+;000199                                    SBUF_TX1 = rab;
+00000341    B30118001C                     	LDB   _AL,rab
+00000346    C70100001C                     	STB   _AL,SBUF_TX1
+                  ??_18_ELSE:
+;000200                                    clon=clon>>8;
+0000034B    A30110001C                     	LD    _AX,clon
+00000350    08081C                         	SHR   _AX,#08h
+00000353    C30110001C                     	ST    _AX,clon
+;000201                                    __NOP ();
+00000358    FD                             	NOP   
+;000202                                    }
+                  ??_17_ELSE:
+;000203                            }  //while clon!=0
+              ??_16_CONTINUE:
+00000359    A30110001C                     	LD    _AX,clon
+0000035E    88001C                         	CMP   _AX,0
+00000361    D7A6                           	JNE   ??_16_DO
+;000204                    __NOP ();
+00000363    FD                             	NOP   
+;000205                    __NOP ();
+00000364    FD                             	NOP   
+;000208                    k=0 ;
+00000365    C701170000                     	STB   00h,k
+;000209                    i++;
+0000036A    A30112001C                     	LD    _AX,i
+0000036F    071C                           	INC   _AX
+00000371    C30112001C                     	ST    _AX,i
+;000210                    adc_convertion = 0;
+00000376    C701150000                     	STB   00h,adc_convertion
+;000211                    adc_init(k);
+0000037B    B30117001C                     	LDB   _AL,k
+00000380    2C7E                           	SCALL adc_init
+;000212                    }  //else (k>=2)
+;000213            } //while (1)
+00000382    2554                           	SJMP  ??_3_DO
+;000214    }    //main
+00000384    65040018                       	ADD   _SP,#0004h
+00000388    CC28                           	POP   _GX
+0000038A    CC26                           	POP   _FX
+0000038C    CC24                           	POP   _EX
+0000038E    F0                             	RET   
+.ENDF
+                ?INTERRUPT08:
+              IRQ_uart_rx_tx:
+;000218    void IRQ_uart_rx_tx()
+00000000    F4                             	PUSHA 
+;000220      _di_();
+00000001    FA                             	DI    
+;000221      status_uart = SP_STAT0;    //запоминаем регистр статуса
+00000002    C701190000                     	STB   SP_STAT0,status_uart
+;000222       if (status_uart&0x40)     //Обрабатываем прерывание по приему
+;000223            {
+;000224            //ByteReceived = SBUF_RX0;
+;000225            //IOPORT1 = ByteReceived;
+;000226            //SBUF_TX0 = ByteReceived;
+;000227            }
+;000228       else                      //Обрабатываем прерывание по передаче
+;000229            {
+;000230           /* if(clon!=0)
+;000231                    {
+;000232                    rab=clon&SDV_Low;
+;000233                    SBUF_TX0 = rab;
+;000234                    clon=clon>>8;
+;000235                    }
+;000236            else
+;000237                    {
+;000238                     SP_CON0=0x8;
+;000239                    } */
+;000240            }
+;000241      _ei_();
+00000007    FB                             	EI    
+;000242    }
+00000008    F5                             	POPA  
+00000009    F0                             	RET   
+.ENDF
+
+.\ADC_ONE.c: 921 byte(s), 2978 line(s), 0 error(s), 8 warning(s)
+
