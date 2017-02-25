@@ -196,9 +196,9 @@ file_name=Other output files|Другие выходные файлы
 Scheme name=Default
 
 [[Main window32]
-Style=399441920
+Style=382664704
 ExStyle=262400
-WINDOWPLACEMENT=2C0000000200000003000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FFFFFF000000007F050000FD020000
+WINDOWPLACEMENT=2C0000000000000001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FFFFFF000000007F050000FD020000
 
 [[Desktop options]
 EditToolbar=0
@@ -1026,12 +1026,12 @@ Id=27
 Splitter=0
 W=779
 H=609
-CaretX=35
-CaretY=22
+CaretX=67
+CaretY=174
 Toolbar=1
-StartItem=0
+StartItem=151
 StartHItem=0
-NumItems=241
+NumItems=248
 NumHItems=32760
 CurItem=0
 LOGFONT=F4FFFFFF000000000000000000000000000000000000000100000200436F7572696572204E6577000000000000000000000000000000000000000000
@@ -1042,10 +1042,10 @@ TabTitle=ADC_ONE.c
 FileName=.\ADC_ONE.c
 InsertMode=1
 BlockStat=0
-BlockLine1=0
-BlockLine2=239
+BlockLine1=180
+BlockLine2=180
 BlockCol1=0
-BlockCol2=4
+BlockCol2=0
 LineNumbersOn=1
 
 [[Window32_3_Pane_1]
@@ -1347,7 +1347,7 @@ DataAllowed=0
 [[[Remap]
 
 [[[Perf. Analyzer]
-LastProgram=C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.MCE
+LastProgram=G:\ADC_ONE\Debug\Exe\ADC_ONE.MCE
 
 [[[SoftTracer]
 
