@@ -30,6 +30,7 @@ short unsigned int SDV_Low =0xFF;
 
 //обычный счетчик
 volatile unsigned int i;
+unsigned char led_blink;
 
 //переменная-счетчик каналов
 volatile unsigned char k;
@@ -82,15 +83,18 @@ void USART1_Init(unsigned char spcon)
 //включение таймера
 void init_Timer(void){
 
-  unsigned char tmp, tmp1;
-  tmp = WSR;
-  WSR = (tmp & 0x80);
-  IOC1 = 0x25;
+  unsigned char tmp, tmp1,reg;
+  WSR=15;
+  reg=IOC1;
+  reg|=0x4;
+  WSR=0;
+  IOC1=reg;
   tmp1 = INT_MASK;
   tmp1 |= 0x01;
   INT_MASK = tmp1;
+  tmp = WSR;
   WSR = (tmp & 0x80) | 0xF;
-  TIMER1 = 0x0001;
+  TIMER1 = 0x000f;
   WSR = (tmp & 0x80);
                      }
 
@@ -99,15 +103,18 @@ void init_Timer(void){
  void first_start ()
  {
         //adc_convertion = 0;
-        for (k=0;k<3;k++)
+
+        unsigned short adc_busy;
+        for (i=0;i<3;i++)
                 {
-                adc_init(k);
+                adc_init(i);
                 __NOP ();
                 __NOP ();
                 __NOP ();
-                if ( ADC_RESULT&0x8000==0)
+                adc_busy=ADC_RESULT&0x8000;
+                        if (adc_busy==0)
                         {
-                        mas[k]=inverse(ADC_RESULT);
+                        mas[i]=inverse(ADC_RESULT);
                         }
                 }
 
@@ -116,6 +123,8 @@ void init_Timer(void){
 void main ()
 {
  unsigned char tmp;
+ unsigned short adc_busy;
+
 //INT_MASK |= 0x02;
 __EI();
 
@@ -124,22 +133,27 @@ __EI();
   i=3;
   first_start();
   k=0;
-
-  USART1_Init(SP_MODE_1);
   timer_convertion=0;
   init_Timer();
+
+  USART1_Init(SP_MODE_1);
   adc_init(k);
+  led_blink=0x01;
+   IOPORT1 = 0x00;
 //IOC1 = 0x20;
   while (1)
 {
     if (timer_convertion==1)
     {
                  timer_convertion=0;
-                 status_uart = SP_STAT1;    //запоминаем регистр статуса
+
+                /* status_uart = SP_STAT1;    //запоминаем регистр статуса
                         if (status_uart&0x40)
                                 {
-                                ByteReceived = SBUF_RX1;
-                                }
+
+                                }          */
+                             //   ByteReceived=13;
+                             ByteReceived = SBUF_RX1;
                 //если пришла команда запрета передачи по УАРТ
                 if  (ByteReceived==228)
                         {
@@ -150,12 +164,13 @@ __EI();
 
                 if (ByteReceived==13)    //разрешение передачи данных по УАРТ
                         {
-                        if (ADC_RESULT&0x8000==0)
+                        adc_busy=ADC_RESULT&0x8000;
+                        if (adc_busy==0)
                                 {
-                                if (k<2)
-                                        {
+
+
                                         // adc_convertion = 0;
-                                        i++;
+
                                         ADCRES=inverse(ADC_RESULT);
                                         mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
                                         clon=mas[k];
@@ -183,45 +198,22 @@ __EI();
                                         __NOP ();
                                         __NOP ();
                                         //SP_CON0=0x8;
-                                        k++;
-                                        adc_init(k);
-                                        } //if k<2
-                                 else
+                                        if (k<2)
                                         {
-                                        ADCRES=inverse(ADC_RESULT);
-                                        mas[k]=mas[k]+(1-alfa)*(ADCRES-mas[k]);
-                                        clon=mas[k];
-                                        // SP_CON0=0x0;
-
-                                        SBUF_TX1 =k;
-                                        __NOP ();
-                                        __NOP ();
-                                        while (clon!=0)
-                                                {
-                                                tmp = WSR;
-                                                WSR=0;
-                                                status_uart = SP_STAT1;
-                                                WSR = tmp;
-                                                if ((status_uart&0x8)!=0)
-                                                        {
-                                                        rab=clon&SDV_Low;
-                                                        SBUF_TX1 = rab;
-                                                        clon=clon>>8;
-                                                        __NOP ();
-                                                        }
-                                                }  //while clon!=0
-                                        __NOP ();
-                                        __NOP ();
-                                        //SP_CON0=0x8;
-
-                                        k=0 ;
-                                        i++;
-                                        adc_convertion = 0;
+                                        k++;
+                                        }
+                                        else
+                                        {
+                                        k=0;
+                                        }
                                         adc_init(k);
-                                        }  //else (k>=2)
+
+
+
                                 }//ADC_RESULT&0x8000==0
 
                         }//if (ByteReceived==13)
+//          +             IOPORT1 = 0x00;
     } //if (timer_convertion==1)
 }// while (1)
 }//main
@@ -229,8 +221,22 @@ __EI();
 
     void    timer_irq()
         {
+           unsigned char tmp;
+  tmp = WSR;
+  WSR = (tmp & 0x80) | 0xF;
+  TIMER1 = 0x0001;
+  WSR = (tmp & 0x80);
         timer_convertion=1;
-        TIMER1 = 0x0001;
+        if (led_blink==0x01)
+                 {
+                 led_blink=0x00;
+                  IOPORT1 = (0xfe);
+                 }
+                 else
+                 {
+                 led_blink=0x01;
+                 IOPORT1 = (0xff);
+                 }
         }
 
 
@@ -238,4 +244,5 @@ __EI();
 /*void adc_irq(){
   adc_convertion = 1;
 } */
+
 
