@@ -8,10 +8,10 @@
 -M 21
 -M 60
 -M 80
--O"D:\CodeMaster-96\1_32_00\CMC-96\Lib"
--E"C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE"
+-O"C:\Program Files (x86)\CodeMaster-96\1_32_00\CMC-96\Lib"
+-E"G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE"
 -F MI
-"C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Obj\ADC_ONE.MCO"
-"C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Obj\INVERSE.MCO"
+"G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Obj\ADC_ONE.MCO"
+"G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Obj\INVERSE.MCO"
 K1874VE7T_av3.mcl
 c96_cv2.mcl

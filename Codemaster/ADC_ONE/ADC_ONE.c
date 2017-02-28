@@ -33,7 +33,7 @@ volatile unsigned int i;
 unsigned char led_blink;
 
 //переменная-счетчик каналов
-volatile unsigned char k;
+unsigned char k;
 
 //переменные - датчики прерываний
 volatile unsigned char adc_convertion;
@@ -94,7 +94,7 @@ void init_Timer(void){
   INT_MASK = tmp1;
   tmp = WSR;
   WSR = (tmp & 0x80) | 0xF;
-  TIMER1 = 0x000f;
+  TIMER1 = 0x0001;
   WSR = (tmp & 0x80);
                      }
 
@@ -103,18 +103,20 @@ void init_Timer(void){
  void first_start ()
  {
         //adc_convertion = 0;
-
-        unsigned short adc_busy;
-        for (i=0;i<3;i++)
+        unsigned short j;
+        unsigned short adc_busy_local;
+        unsigned char adc_init_local;
+        for (j=0;j<3;j=j+1)
                 {
-                adc_init(i);
+                adc_init(j);
                 __NOP ();
                 __NOP ();
                 __NOP ();
-                adc_busy=ADC_RESULT&0x8000;
-                        if (adc_busy==0)
+                __NOP ();
+                adc_busy_local=ADC_RESULT&0x8000;
+                        if (adc_busy_local==0)
                         {
-                        mas[i]=inverse(ADC_RESULT);
+                        mas[j]=inverse(ADC_RESULT);
                         }
                 }
 
@@ -122,6 +124,7 @@ void init_Timer(void){
 
 void main ()
 {
+ unsigned char adc_init_global;
  unsigned char tmp;
  unsigned short adc_busy;
 
@@ -131,12 +134,13 @@ __EI();
   //adc_convertion = 0;
   adc_mode=(0x00 << 1);
   i=3;
-  first_start();
+ // first_start();
   k=0;
-  timer_convertion=0;
-  init_Timer();
+ timer_convertion=0;
+ init_Timer();
 
   USART1_Init(SP_MODE_1);
+
   adc_init(k);
   led_blink=0x01;
    IOPORT1 = 0x00;
@@ -154,6 +158,7 @@ __EI();
                                 }          */
                              //   ByteReceived=13;
                              ByteReceived = SBUF_RX1;
+                            // ByteReceived=13;
                 //если пришла команда запрета передачи по УАРТ
                 if  (ByteReceived==228)
                         {
@@ -178,6 +183,7 @@ __EI();
                                         SBUF_TX1 =k;
                                         __NOP ();
                                         __NOP ();
+                                        __NOP ();
 
                                         while (clon!=0)
                                                 {
@@ -191,22 +197,27 @@ __EI();
                                                         SBUF_TX1 = rab;
                                                         clon=clon>>8;
                                                         __NOP ();
+                                                        __NOP ();
+                                                        __NOP ();
                                                         }
                                                 }   //while clon!=0
                                                         //inverse(ADCRES);
 
                                         __NOP ();
                                         __NOP ();
+                                        __NOP ();
                                         //SP_CON0=0x8;
-                                        if (k<2)
-                                        {
-                                        k++;
-                                        }
-                                        else
+
+                                        k=k+1;
+
+                                         if (k>2)
                                         {
                                         k=0;
                                         }
-                                        adc_init(k);
+                                         adc_init(k);
+                                        __NOP ();
+
+
 
 
 

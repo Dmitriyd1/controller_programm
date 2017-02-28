@@ -1,10 +1,10 @@
-REM   C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\ADC_ONE.ipp - command file
-REM   Created: Feb 26, 2017  00:14:28
+REM   G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\ADC_ONE.ipp - command file
+REM   Created: Feb 28, 2017  15:52:28
 
 PushD
 CD..
-If Exist "C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.MCE" Del "C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.MCE"
-If Exist "C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.HEX" Del "C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.HEX"
-"D:\CodeMaster-96\1_32_00\CMC-96\Bin\MCC96.EXE" @"C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\ADC_ONE.{1}"
-"D:\CodeMaster-96\1_32_00\CMC-96\Bin\MCLINK.EXE" @"C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\ADC_ONE.(1)"
+If Exist "G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.MCE" Del "G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.MCE"
+If Exist "G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.HEX" Del "G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.HEX"
+"C:\Program Files (x86)\CodeMaster-96\1_32_00\CMC-96\Bin\MCC96.EXE" @"G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\ADC_ONE.{1}"
+"C:\Program Files (x86)\CodeMaster-96\1_32_00\CMC-96\Bin\MCLINK.EXE" @"G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\ADC_ONE.(1)"
 PopD

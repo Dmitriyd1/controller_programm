@@ -7,8 +7,8 @@
 
                  * * *  O P T I O N S   A T   S T A R T  * * *
 
-    -O D:\CodeMaster-96\1_32_00\CMC-96\Lib
-    -E C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE
+    -O C:\Program Files (x86)\CodeMaster-96\1_32_00\CMC-96\Lib
+    -E G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE
     -M 10
     -M 20
     -M 21
@@ -112,8 +112,8 @@
 
               * * *  F U L L   S E T   O F   O P T I O N S  * * *
 
-    -O D:\CodeMaster-96\1_32_00\CMC-96\Lib
-    -E C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE
+    -O C:\Program Files (x86)\CodeMaster-96\1_32_00\CMC-96\Lib
+    -E G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE
     -M 10
     -M 20
     -M 21
@@ -351,9 +351,9 @@
   ------------------------------------------------------------
   Module                      Size        Align        Offset 
   ============================================================
-  ADC_ONE                   00000256        00        00000000
+  ADC_ONE                   00000241        00        00000000
   ============================================================
-  Total:                    00000256        00
+  Total:                    00000241        00
 
 
   Segment: FUN_CODE__INVERSE                       code    REL
@@ -482,12 +482,12 @@
 
   Segment:                       FUN_CODE__ADC_ONE
   Allocation:                    code
-  Size:                          00000250
+  Size:                          000001F4
   Align:                         00
   Address area:                  CODE
   Border:                        >00000000
   Placed at:                     000024FA
-  Ends at:                       00002749
+  Ends at:                       000026ED
 
 
   Segment:                       FUN_CODE__INVERSE
@@ -496,8 +496,8 @@
   Align:                         00
   Address area:                  CODE
   Border:                        >00000000
-  Placed at:                     0000274A
-  Ends at:                       00002770
+  Placed at:                     000026EE
+  Ends at:                       00002714
 
 
   Segment:                       IDATA_INI__ADC_ONE
@@ -506,8 +506,8 @@
   Align:                         00
   Address area:                  CODE
   Border:                        >00000000
-  Placed at:                     00002771
-  Ends at:                       00002776
+  Placed at:                     00002715
+  Ends at:                       0000271A
 
 
   Segment:                       ISR_CODE__ADC_ONE
@@ -516,8 +516,8 @@
   Align:                         00
   Address area:                  CODE
   Border:                        >00000000
-  Placed at:                     00002777
-  Ends at:                       000027BA
+  Placed at:                     0000271B
+  Ends at:                       0000275E
 
 
   Segment:                       CSTACK
@@ -561,11 +561,11 @@
   CSEG__??ISR                    0     000024B0    000024E5  00000036    54
   ??DATA_SEGMENT_ADDRESSES       1     000024E6    000024ED  00000008    8
   ??INIT_DATA_SEGMENT_ADDRESSES  1     000024EE    000024F9  0000000C    12
-  FUN_CODE__ADC_ONE              0     000024FA    00002749  00000250    592
-  FUN_CODE__INVERSE              0     0000274A    00002770  00000027    39
-  IDATA_INI__ADC_ONE             0     00002771    00002776  00000006    6
-  ISR_CODE__ADC_ONE              0     00002777    000027BA  00000044    68
-  *** GAP ***                    -     000027BB    0000FFFF  0000D845    55365
+  FUN_CODE__ADC_ONE              0     000024FA    000026ED  000001F4    500
+  FUN_CODE__INVERSE              0     000026EE    00002714  00000027    39
+  IDATA_INI__ADC_ONE             0     00002715    0000271A  00000006    6
+  ISR_CODE__ADC_ONE              0     0000271B    0000275E  00000044    68
+  *** GAP ***                    -     0000275F    0000FFFF  0000D8A1    55457
 
 
   Address area: DATA
@@ -593,7 +593,7 @@
   Name                           Segment          Value       Type info
 
   ?CCB_DATA                      n/a             0000001F     n/a
-  ?INTERRUPT00                   ISR_CODE__ADC_O 00002777     n/a
+  ?INTERRUPT00                   ISR_CODE__ADC_O 0000271B     n/a
   ?INTERRUPT01                   CSEG__??ISR     000024B0     n/a
   ?INTERRUPT02                   CSEG__??ISR     000024B3     n/a
   ?INTERRUPT03                   CSEG__??ISR     000024B6     n/a
@@ -690,18 +690,17 @@
   alfa                           IDATA__ADC_ONE  00000200 *** float
   clon                           UDATA__ADC_ONE  00000218 *** unsigned short
   exit                           CODE__??CLIB    00002165 *** <function>
-  first_start                    FUN_CODE__ADC_O 0000256A *** <function>
   i                              UDATA__ADC_ONE  0000021A *** unsigned int
   init_Timer                     FUN_CODE__ADC_O 0000253C *** <function>
-  inverse                        FUN_CODE__INVER 0000274A     <function>
+  inverse                        FUN_CODE__INVER 000026EE     <function>
   k                              UDATA__ADC_ONE  0000021F *** unsigned char
   led_blink                      UDATA__ADC_ONE  00000220 *** unsigned char
-  main                           FUN_CODE__ADC_O 000025C2     <function>
+  main                           FUN_CODE__ADC_O 0000256A     <function>
   mas                            UDATA__ADC_ONE  00000208 *** <array>
   rab                            UDATA__ADC_ONE  00000221 *** unsigned char
   status_uart                    UDATA__ADC_ONE  00000222 *** unsigned char
   timer_convertion               UDATA__ADC_ONE  00000223 *** unsigned char
-  timer_irq                      ISR_CODE__ADC_O 00002777 *** <function>
+  timer_irq                      ISR_CODE__ADC_O 0000271B *** <function>
 
   ***  These symbols do not resolve any external reference
 
@@ -709,10 +708,10 @@
                      * * *  O U T P U T   F I L E S  * * *
 
   Phyton/MicroCOSM format:
-    C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.mce
+    G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.mce
 
   Intel Extended HEX format:
-    C:\Users\Дмитрий\Desktop\Дима\4 курс\2 семестр\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.HEX  for Address Area CODE
+    G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.HEX  for Address Area CODE
 
   Generated code is suitable for:  K1874BE96T
 

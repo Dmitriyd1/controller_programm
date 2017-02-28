@@ -196,9 +196,9 @@ file_name=Other output files|Другие выходные файлы
 Scheme name=Default
 
 [[Main window32]
-Style=382664704
+Style=399441920
 ExStyle=262400
-WINDOWPLACEMENT=2C0000000000000001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FFFFFF000000007F050000FD020000
+WINDOWPLACEMENT=2C0000000200000003000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FFFFFF000000007F050000FD020000
 
 [[Desktop options]
 EditToolbar=0
@@ -362,10 +362,10 @@ W=473
 H=517
 
 [[[31552]
-X=599
-Y=272
+X=759
+Y=423
 W=402
-H=292
+H=291
 
 [[[6906]
 X=506
@@ -482,10 +482,10 @@ W=267
 H=328
 
 [[[30504]
-X=589
-Y=329
+X=709
+Y=381
 W=501
-H=373
+H=376
 
 [[[31321]
 X=361
@@ -866,39 +866,6 @@ LFPointSize=9
 
 [[Window32_0]
 Base=1
-Id=3
-ActiveSplitter=0
-Style=1443823616
-ExStyle=320
-WINDOWPLACEMENT=2C0000000000000001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF100000000D010000900100003F020000
-Title=1
-
-[[Window32_0_Pane_0]
-Id=3
-Splitter=0
-W=368
-H=262
-CaretX=0
-CaretY=0
-Toolbar=1
-StartItem=0
-StartHItem=0
-NumItems=65536
-NumHItems=0
-CurItem=0
-LOGFONT=F4FFFFFF000000000000000000000000000000000000000100000200436F7572696572204E6577000000000000000000000000000000000000000000
-LFPointSize=9
-VerticalGrid=0
-HorizontalGrid=0
-TabTitle=Дисассемблер
-Symbols=1
-DisplaySourceLines=1
-RightPanePresent=0
-HorizontalScrollBar=0
-StartAddr=9711
-
-[[Window32_1]
-Base=1
 Id=21665
 ActiveSplitter=0
 Style=1443823616
@@ -906,7 +873,7 @@ ExStyle=320
 WINDOWPLACEMENT=2C0000000000000001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000B000000B7010000CA020000
 Title=1
 
-[[Window32_1_Pane_0]
+[[Window32_0_Pane_0]
 Id=21665
 Splitter=0
 W=423
@@ -933,7 +900,7 @@ State=114
 [[[[0_1_]
 State=96
 
-[[Window32_1_Pane_1]
+[[Window32_0_Pane_1]
 Id=21665
 Splitter=1
 W=0
@@ -963,7 +930,7 @@ State=96
 [[[[[0_1_0_]
 State=96
 
-[[Window32_2]
+[[Window32_1]
 Base=1
 Id=21565
 ActiveSplitter=0
@@ -972,7 +939,7 @@ ExStyle=320
 WINDOWPLACEMENT=2C00000000000000010000000000000000000000F9FFFFFFF9FFFFFF00000000F30200004C060000C1030000
 Title=1
 
-[[Window32_2_Pane_0]
+[[Window32_1_Pane_0]
 Id=21565
 Splitter=0
 W=1596
@@ -992,7 +959,7 @@ HorizontalGrid=0
 TabTitle=Ошибки/Предупреждения
 NoWarnings=1
 
-[[Window32_2_Pane_1]
+[[Window32_1_Pane_1]
 Id=21565
 Splitter=1
 W=1596
@@ -1012,26 +979,26 @@ HorizontalGrid=0
 TabTitle=Журнал компиляции
 NoWarnings=1
 
-[[Window32_3]
+[[Window32_2]
 Base=1
 Id=27
 ActiveSplitter=0
 Style=1443823616
 ExStyle=320
-WINDOWPLACEMENT=2C0000000000000001000000FFFFFFFFFFFFFFFFF9FFFFFFF9FFFFFFAC01000012000000A8050000CA020000
+WINDOWPLACEMENT=2C0000000000000001000000FFFFFFFFFFFFFFFFF9FFFFFFF9FFFFFFAC010000120000007B060000CA020000
 Title=1
 
-[[Window32_3_Pane_0]
+[[Window32_2_Pane_0]
 Id=27
 Splitter=0
-W=779
+W=800
 H=609
-CaretX=47
-CaretY=213
+CaretX=0
+CaretY=1
 Toolbar=1
-StartItem=196
+StartItem=0
 StartHItem=0
-NumItems=248
+NumItems=259
 NumHItems=32760
 CurItem=0
 LOGFONT=F4FFFFFF000000000000000000000000000000000000000100000200436F7572696572204E6577000000000000000000000000000000000000000000
@@ -1042,16 +1009,16 @@ TabTitle=ADC_ONE.c
 FileName=.\ADC_ONE.c
 InsertMode=1
 BlockStat=0
-BlockLine1=227
-BlockLine2=228
-BlockCol1=21
-BlockCol2=27
+BlockLine1=110
+BlockLine2=110
+BlockCol1=15
+BlockCol2=28
 LineNumbersOn=1
 
-[[Window32_3_Pane_1]
+[[Window32_2_Pane_1]
 Id=527
 Splitter=0
-W=170
+W=360
 H=609
 CaretX=4294967295
 CaretY=4294967295
@@ -1067,7 +1034,7 @@ VerticalGrid=0
 HorizontalGrid=0
 TabTitle=ADC_ONE.c
 
-[[Window32_3_Pane_2]
+[[Window32_2_Pane_2]
 Id=27
 Splitter=1
 W=0
@@ -1247,7 +1214,7 @@ FullPathInTitle=0
 EShowOnlyExFiles=1
 ClearClipboard=1
 ERPNoFunctions=1
-ERPFormat=0
+ERPFormat=1
 ERPAddSFRs=1
 AutosaveOn=1
 AutosaveMinutes=5
@@ -1347,7 +1314,7 @@ DataAllowed=0
 [[[Remap]
 
 [[[Perf. Analyzer]
-LastProgram=G:\ADC_ONE\Debug\Exe\ADC_ONE.MCE
+LastProgram=G:\Курсовая работа 4курс 2 сем\Codemaster\ADC_ONE\Debug\Exe\ADC_ONE.MCE
 
 [[[SoftTracer]
 
