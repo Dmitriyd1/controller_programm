@@ -75,7 +75,7 @@ void MainWindow::on_pushButton_clicked()
        com->setDataBits(DATA_8);
        com->setStopBits(STOP_1);
        // timeout means total absolute timeout in ms
-       com->setTimeout(3000);
+       com->setTimeout(15000);
 
         //если порт не был открыт
         if (! (com->open(QIODevice::ReadWrite | QIODevice::Unbuffered)))
@@ -89,7 +89,7 @@ void MainWindow::on_pushButton_clicked()
         else
             {
                 com->write(&na4alo);
-                Sleep(300);
+                Sleep(15000);
                 //если данные для чтения доступны
                 int avail = com->bytesAvailable();
                 if( avail > 0 )
