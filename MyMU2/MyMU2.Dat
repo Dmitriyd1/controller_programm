@@ -1,0 +1,68 @@
+Field=ValueType~String~ValueType~100|Field=Designator~String~Designator~100|Field=Value~String~Value~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~MyMU2.PrjPcb|ReportField=ProjectFullPath~D:\MyMU2\MyMU2.PrjPcb|ReportField=Title~Bill of Materials For Project [MyMU2.PrjPcb] (No PCB Document Selected)|ReportField=TotalQuantity~67|ReportField=ReportTime~13:44:01|ReportField=ReportDate~20.03.2017|ReportField=ReportDateTime~20.03.2017 13:44:01|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~Деменев Д.А.|ReportField=Address2~Петров С.А.|ReportField=Address3~|ReportField=Address4~|ReportField=Application_BuildNumber~|ReportField=ApprovedBy~|ReportField=Author~Demenev|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~20.03.2017|ReportField=CurrentTime~12:41:31|ReportField=Date~|ReportField=DocumentFullPathAndName~D:\MyMU2\MyADC.SchDoc|ReportField=DocumentName~MyADC.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=ImagePath~|ReportField=INDEX~Усилительное Устройство|ReportField=Inventar~ |ReportField=ModifiedDate~20.03.2017|ReportField=Organization~|ReportField=ProjectName~MyMU2.PrjPcb|ReportField=Revision~|ReportField=Rule~|ReportField=SheetNumber~1|ReportField=SheetTotal~|ReportField=Time~|ReportField=Title~|ReportField=DataSourceFileName~MyMU2.PrjPcb|ReportField=DataSourceFullPath~D:\MyMU2\MyMU2.PrjPcb
+|VT9|
+Стабилитрон|VD2|
+Резистор|R75|27k
+Резистор|R74|3k
+Резистор|R73|100
+Резистор|R72|2.8k
+Резистор|R71|1k
+Резистор|R70|487
+Резистор|R67|1k
+Резистор|R66|1.33k
+Резистор|R65|7.68k
+Резистор|R62|3.65k
+Резистор|R61*|6.49
+Резистор|R60|62k
+Резистор|R59|62k
+Резистор|R58|20.5k
+Резистор|R57|511
+Резистор|R56|20.5k
+Резистор|R55|1k
+Резистор|R54|20.5k
+Резистор|R53|2.05k
+Резистор|R49|24.9k
+Резистор|R48|100k
+Резистор|R46|20.5k
+Резистор|R45|511
+Резистор|R44|20.5k
+Резистор|R43|1k
+Резистор|R42|20.5k
+Резистор|R39|2.05k
+Резистор|R38|24.9k
+Резистор|R37|100k
+Резистор|R36|20.5k
+Резистор|R35|511
+Резистор|R34|20.5k
+Резистор|R30|1k
+Резистор|R29|20.5k
+Резистор|R28|2.05k
+Резистор|R27|24.9k
+Резистор|R26|100k
+Соединитель|N2|
+|K1|
+Модуль питания|D13|
+Микросхема|D12|
+Микросхема|D11|
+Микросхема|D9|
+Микросхема|D7|
+Конденсатор|C122|0.068 uF
+Конденсатор|C90|0.068 uF
+Конденсатор|C89|0.068 uF
+Конденсатор|C88|10 uF
+Конденсатор|C87|0.1 uF
+Конденсатор|C86|0.47 uF
+Конденсатор|C85|10 uF
+Конденсатор|C84|0.1 uF
+Конденсатор|C74|0.068 uF
+Конденсатор|C73|10 uF
+Конденсатор|C72|0.068 uF
+Конденсатор|C71|0.015 uF
+Конденсатор|C67|0.068 uF
+Конденсатор|C66|0.015 uF
+Конденсатор|C64|0.015 uF
+Конденсатор|C63|0.068 uF
+Конденсатор|C24|0.015 uF
+Конденсатор|C21|0.015 uF
+Конденсатор|C20|0.068 uF
+Конденсатор|C19|0.015 uF
+Конденсатор|C18|0.015 uF
