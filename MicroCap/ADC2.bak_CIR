@@ -2,11 +2,11 @@
 FileType=CIR
 Version=9.00
 Program=Micro-Cap
-Screen=2560,1440
+Screen=1600,900
 MCAPVersion=9.0.3.0
 Key ID=2 233 293 684
-NLCnt=271
-TXCnt=28
+NLCnt=272
+TXCnt=29
 
 [shapedef]
 Name=Battery
@@ -164,7 +164,7 @@ Pin="Plus",6,0,-3,-5
 Pin="Minus",0,0,-14,-5
 
 [Circuit]
-Window Placement=2,3, -1,-1, -9,-36, 0,0,1265,484
+Window Placement=2,3, -1,-1, -8,-31, 0,0,989,365
 Default Object=Color=#000080,Width=5
 Default Object Font=Height=-15,FStyle=0,Color=#000080,Name=Arial
 Default Object Apply Border To Text=No
@@ -196,7 +196,6 @@ Digital F Color=#FFFF00
 Digital 1 Color=#FF0000
 Digital X Color=#C0C0C0
 Digital Z Color=#808080
-Window Placement in Transient Analysis=2,3, -1,-1, -9,-36, 30,30,2191,883
 SpiceType=AMBIGUOUS
 Block Select Color=#51F998
 TitleBlock Field_1=$name
@@ -419,7 +418,7 @@ Style=8192
 
 [Comp]
 Name=Resistor
-Grid=64,177
+Grid=63,177
 Rot=2
 
 [Attr]
@@ -427,7 +426,7 @@ ONV=-42,-20,PART,R38
 Style=8192
 
 [Attr]
-ONV=-53,-34,RESISTANCE,6.4k
+ONV=-53,-34,RESISTANCE,4.3k
 Style=8192
 
 [Comp]
@@ -460,7 +459,7 @@ ONV=-79,53,PACKAGE,SOD-323F
 
 [Comp]
 Name=Ground
-Grid=55,180
+Grid=51,179
 Rot=7
 
 [Comp]
@@ -469,13 +468,10 @@ Grid=61,196
 Rot=7
 
 [Wire]
-Grids=55,177,58,177
+Grids=51,177,51,179
 
 [Wire]
-Grids=55,177,55,180
-
-[Wire]
-Grids=64,177,67,177
+Grids=63,177,67,177
 
 [Wire]
 Grids=67,169,72,169
@@ -780,7 +776,9 @@ ONV=-38,-41,VALUE,1.65
 Grids=134,139,134,140
 
 [Wire]
-Grids=134,131,134,133
+Grids=134,131,134,132
+Weight=3
+Color=#FFFF00
 
 [Wire]
 Grids=76,120,82,120
@@ -1031,7 +1029,7 @@ ONV=18,6,PART,R49
 Style=8192
 
 [Attr]
-ONV=18,20,RESISTANCE,2700
+ONV=18,20,RESISTANCE,2800
 Style=8192
 
 [Comp]
@@ -1199,7 +1197,9 @@ Weight=3
 Color=#FF0000
 
 [Wire]
-Grids=254,131,254,133
+Grids=254,131,254,132
+Weight=3
+Color=#FFFF00
 
 [Wire]
 Grids=196,120,202,120
@@ -1357,7 +1357,7 @@ ONV=18,6,PART,R58
 Style=8192
 
 [Attr]
-ONV=18,20,RESISTANCE,3200
+ONV=18,20,RESISTANCE,2800
 Style=8192
 
 [Comp]
@@ -1521,6 +1521,8 @@ Rot=7
 
 [Wire]
 Grids=219,209,219,215
+Weight=3
+Color=#FFFF00
 
 [Wire]
 Grids=95,198,167,198
@@ -1711,16 +1713,42 @@ Grids=40,2,40,4
 Page=3
 
 [Wire]
-Grids=134,133,191,133
+Grids=134,132,191,132
+Weight=3
+Color=#FFFF00
 
 [Wire]
-Grids=191,133,191,215
+Grids=191,132,191,215
+Weight=3
+Color=#FFFF00
 
 [Wire]
 Grids=191,215,219,215
+Weight=3
+Color=#FFFF00
 
 [Wire]
-Grids=191,133,254,133
+Grids=191,132,254,132
+Weight=3
+Color=#FFFF00
+
+[Wire]
+Grids=134,132,134,133
+Weight=3
+Color=#FFFF00
+
+[Comp]
+Name=Resistor
+Grid=57,177
+Rot=2
+
+[Attr]
+ONV=-30,-26,PART,R67
+Style=8192
+
+[Attr]
+ONV=-54,-35,RESISTANCE,2.1k
+Style=8192
 
 [Grid Text]
 Text="VE1"
@@ -1876,6 +1904,16 @@ Text="VOL2"
 Grid=233,208
 CBorder=NONE
 
+[Grid Text]
+Text="Dynamic DCþTemperature=27þDisplaying DC Voltagesþ"
+BannerDC=True
+Grid=2,10
+Height=-15
+Color=#800000
+Font=Arial
+CFill=#C0C0C0
+CBorder=#000000
+
 [Schematic]
 CurrentSection 0=0
 CurrentSection 1=0
@@ -1884,7 +1922,7 @@ CurrentSection 3=0
 Splitter.xs=0
 Splitter.ys=0
 TextQuad=4099
-Scale=0.5
+Scale=0.6666666666666666
 PrinterScale=1
 GridUser=10
 ShapeGroups="Main","Euro","DeMorgan","Polarity","Electrolytic"
@@ -1984,9 +2022,9 @@ Name=Main
 Scale 0=1
 Scale 1=1
 Scale 2=1
-SB 3=383,719
-Scale 3=1
-Grid=224,219
+SB 3=625,717
+Scale 3=0.6666666666666666
+Grid=140,107
 
 [Page]
 Index=1
@@ -2003,6 +2041,7 @@ Type=Text
 Print=False
 Enable=True
 Name=Models
+SB 0=30,2
 
 [Page]
 Index=3
@@ -2042,11 +2081,12 @@ Page=2
 Font=Height=-15,FStyle=0,Color=#000000,Name=Courier New
 Comment Color=#008000
 Background Color=#FFFFFF
-Len=0
-
+Len=147
+*** From file C:\MC9\library\PH_DIODE.LIB
+.MODEL PZU6_2B3 D (BV=6.4 CJO=113.90E-12 IBV=0.005 IS=7.526E-16 M=.34012
++ N=0.992 RS=0.2338 VJ=.70655)
 
 [Transient]
-Window Placement=2,3, -1,-1, -9,-36, 30,30,2191,883
 Font=Height=-15,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
@@ -2094,13 +2134,6 @@ FFT_IncludeDCHarmonic=False
 FFT_AutoScale_Harmonics="10"
 PrinterAutoTile=No
 PrinterBlackBorder=No
-MonMaxShow=3
-MonPageWidth=81
-MonPlotWidth=25
-MonExprXWidth=159
-MonExprYWidth=289
-MonRangeXWidth=111
-MonRangeYWidth=111
 AnimateWait=0
 AnimateWaitTime=500
 Save_For_Future=No
