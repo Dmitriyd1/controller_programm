@@ -5,7 +5,7 @@ ConnectionString=Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\ִלטענטי\D
 AddMode=3
 RemoveMode=1
 UpdateMode=2
-ViewMode=0
+ViewMode=1
 LeftQuote=[
 RightQuote=]
 QuoteTableNames=1
@@ -19,7 +19,7 @@ LibrarySearchPath=..\AltiumLib
 OrcadMultiValueDelimiter=,
 SearchSubDirectories=1
 SchemaName=
-LastFocusedTable=ADC$
+LastFocusedTable=Resistor$
 [Table1]
 SchemaName=
 TableName=1325series$
@@ -104,18 +104,27 @@ TableName=3D-PLUS$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=126|Description0=82|Library Ref0=126|Footprint Ref0=95|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=126|ValueTechReq0=95|Package0=65|Ustanovka;Formovka0=130|Prokladka0=74|Mass0=49|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table15]
 SchemaName=
 TableName=521CA3$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=87|Description0=282|Library Ref0=77|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=81|ValueTechReq0=148|Package0=65|Ustanovka;Formovka0=130|Mass0=49|Prokladka0=117|Value0=52|ComponentLink1URL0=152|ComponentLink1Description0=170
 [Table16]
 SchemaName=
 TableName=5304NN$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=87|Description0=85|Library Ref0=77|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=81|ValueTechReq0=107|Package0=65|Ustanovka;Formovka0=196|mass0=48|Value0=52|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table17]
 SchemaName=
 TableName=544series$
@@ -134,12 +143,18 @@ TableName=5572series$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=95|Library Ref0=95|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=81|ValueTechReq0=105|ValueDescription0=160|Package0=65|mass0=48|Ustanovka;Formovka0=157|Prokladka0=96|ComponentLink1URL0=158|ComponentLink1Description0=170
 [Table20]
 SchemaName=
 TableName=5576XCseries$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=87|Library Ref0=77|Footprint Ref0=93|Library Path0=83|Footprint Path0=98|ValueType0=132|ValueName0=81|ValueTechReq0=107|Specification0=126|Package0=65|Ustanovka;Formovka0=130|mass0=48|ComponentLink1URL0=140|ComponentLink1Description0=170
 [Table21]
 SchemaName=
 TableName=5576series$
@@ -158,15 +173,15 @@ TableName=5Pseries$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=87|Description0=233|Library Ref0=77|Footprint Ref0=118|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=81|ValueTechReq0=123|Primenenie0=80|Package0=65|Ustanovka;Formovka0=130|Value0=52|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table24]
 SchemaName=
 TableName=ADC$
 Enabled=True
 UserWhere=0
 UserWhereText=
-BrowserOrder_Sorting=
-BrowserOrder_Grouping=
-BrowserOrder_Visible=Part Number0=95|ValueType0=75|ValueName0=95|ValueTechReq0=95|Description0=82|Library Ref0=95|Footprint Ref0=92|mass0=48|Library Path0=83|Footprint Path0=98|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table25]
 SchemaName=
 TableName=Connectors$
@@ -185,6 +200,9 @@ TableName=FPGAs$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=105|Description0=82|Library Ref0=134|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=105|ComponentLink1URL0=177|ComponentLink1Description0=170
 [Table28]
 SchemaName=
 TableName=Generator$
@@ -197,6 +215,9 @@ TableName=Inductor$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=130|Library Ref0=113|Footprint Ref0=136|Library Path0=83|Footprint Path0=98|ValueType0=157|ValueScreening0=103|ValueName0=125|ValueTechReq0=167|Specification0=211|Package0=65|Ustanovka;Formovka0=130|Prokladka0=117|Mass0=49|Primenenie0=80|Value0=52|ComponentLink1URL0=219|ComponentLink1Description0=170
 [Table30]
 SchemaName=
 TableName=Interpoint$
@@ -209,6 +230,9 @@ TableName=Irbis$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=87|Description0=82|Library Ref0=77|Footprint Ref0=92|Footprint Ref 20=101|Library Path0=83|Footprint Path0=98|Footprint Path 20=107|ValueType0=96|ValueName0=81|ValueTechReq0=136|Mass, Prokladka0=106|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table32]
 SchemaName=
 TableName=K10-17$
@@ -221,12 +245,18 @@ TableName=K10-47$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=154|Library Ref0=125|Footprint Ref0=98|Library Path0=83|Footprint Path0=98|ValueType0=77|ValueScreening0=103|ValueName0=217|ValueTechReq0=192|Specification0=270|Ustanovka;Formovka0=130|mass0=48|Value0=52|ComponentLink1URL0=163|ComponentLink1Description0=170
 [Table34]
 SchemaName=
 TableName=K52-9$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=109|Library Ref0=109|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=77|ValueScreening0=103|ValueName0=128|ValueTechReq0=178|Ustanovka;Formovka0=130|mass0=48|Value0=52|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table35]
 SchemaName=
 TableName=K53-18$
@@ -239,12 +269,18 @@ TableName=K53-46$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=117|Library Ref0=115|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=77|ValueScreening0=103|ValueName0=137|ValueTechReq0=110|mass0=48|Value0=52|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table37]
 SchemaName=
 TableName=K53-56$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=123|Description0=82|Library Ref0=115|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=77|ValueScreening0=103|ValueName0=154|ValueTechReq0=172|Specification0=249|Primenenie0=80|mass0=151|Value0=52|ComponentLink1URL0=151|ComponentLink1Description0=170
 [Table38]
 SchemaName=
 TableName=N1582series$
@@ -257,6 +293,9 @@ TableName=N5503$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=87|Description0=180|Library Ref0=77|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=84|ValueTechReq0=105|Package0=65|Ustanovka;Formovka0=130|Mass0=49|ComponentLink1URL0=193|ComponentLink1Description0=170
 [Table40]
 SchemaName=
 TableName=Opto$
@@ -275,18 +314,27 @@ TableName=Resistor$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=137|Library Ref0=130|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=192|ValueTechReq0=178|Mass0=49|Specification0=272|Ustanovka;Formovka0=130|Value0=52|ComponentLink1URL0=167|ComponentLink1Description0=170
 [Table43]
 SchemaName=
 TableName=Rezonator$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=94|Library Ref0=77|Footprint Ref0=94|Library Path0=83|Footprint Path0=98|ValueType0=75|ValueName0=92|ValueTechReq0=146|Prokladka0=128|ComponentLink1URL0=152|ComponentLink1Description0=170
 [Table44]
 SchemaName=
 TableName=Stabilitron$
 Enabled=True
 UserWhere=0
 UserWhereText=
+BrowserOrder_Sorting=
+BrowserOrder_Grouping=
+BrowserOrder_Visible=Part Number0=87|Library Ref0=77|Footprint Ref0=92|Library Path0=83|Footprint Path0=98|ValueType0=79|ValueName0=81|ValueTechReq0=162|Specification0=150|Package0=65|Ustanovka;Formovka0=130|Mass0=49|ComponentLink1URL0=131|ComponentLink1Description0=170
 [Table45]
 SchemaName=
 TableName=Tomilino$
